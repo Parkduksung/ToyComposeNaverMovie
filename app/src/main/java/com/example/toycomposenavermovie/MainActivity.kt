@@ -6,12 +6,16 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.toycomposenavermovie.presenter.content.MovieListScreen
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.toycomposenavermovie.presenter.Screen
+import com.example.toycomposenavermovie.presenter.detail.MovieDetailScreen
+import com.example.toycomposenavermovie.presenter.list.MovieListScreen
 import com.example.toycomposenavermovie.ui.theme.ToyComposeNaverMovieTheme
+import com.example.toycomposenavermovie.util.AssetParamType
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,7 +29,30 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MovieListScreen()
+
+                    val navController = rememberNavController()
+
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.NaverListScreen.route
+                    ) {
+                        composable(
+                            route = Screen.NaverListScreen.route
+                        ) {
+                            MovieListScreen(
+                                navController = navController
+                            )
+                        }
+
+                        composable(
+                            route = Screen.NaverDetailScreen.route + "/{movie}",
+                            arguments = listOf(
+                                navArgument("movie") {
+                                    type = AssetParamType()
+                                }
+                            )
+                        ) { MovieDetailScreen() }
+                    }
                 }
             }
         }
