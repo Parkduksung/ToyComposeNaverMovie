@@ -1,5 +1,6 @@
-package com.example.toycomposenavermovie.presenter.content
+package com.example.toycomposenavermovie.presenter.list
 
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -24,11 +25,16 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.example.toycomposenavermovie.common.ItemClickType
 import com.example.toycomposenavermovie.domain.model.allElementIsNotEmpty
-import com.example.toycomposenavermovie.presenter.content.component.NaverMovieListItem
+import com.example.toycomposenavermovie.presenter.Screen
+import com.example.toycomposenavermovie.presenter.list.component.NaverMovieListItem
+import com.google.gson.Gson
 
 @Composable
 fun MovieListScreen(
+    navController: NavController,
     viewModel: MovieListViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
@@ -112,7 +118,19 @@ fun MovieListScreen(
                     if (movie.allElementIsNotEmpty()) {
                         NaverMovieListItem(
                             movie,
-                            onItemClick = {}
+                            onItemClick = { movie, type ->
+                                when (type) {
+
+                                    is ItemClickType.LoadUrl -> {
+                                        val toJson = Uri.encode(Gson().toJson(movie))
+                                        navController.navigate(Screen.NaverDetailScreen.route + "/$toJson")
+                                    }
+
+                                    is ItemClickType.Bookmark -> {
+
+                                    }
+                                }
+                            }
                         )
                     }
                 }

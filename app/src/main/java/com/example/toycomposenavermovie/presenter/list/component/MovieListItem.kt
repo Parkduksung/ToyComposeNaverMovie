@@ -1,4 +1,4 @@
-package com.example.toycomposenavermovie.presenter.content.component
+package com.example.toycomposenavermovie.presenter.list.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
+import com.example.toycomposenavermovie.common.ItemClickType
 import com.example.toycomposenavermovie.domain.model.NaverMovie
 import com.example.toycomposenavermovie.ext.convertHtml
 import com.example.toycomposenavermovie.ext.convertPersons
@@ -23,7 +24,7 @@ import com.skydoves.landscapist.coil.CoilImage
 @Composable
 fun NaverMovieListItem(
     naverMovie: NaverMovie,
-    onItemClick: (NaverMovie) -> Unit
+    onItemClick: (NaverMovie, ItemClickType) -> Unit
 ) {
 
     var bookmarkState by remember { mutableStateOf(false) }
@@ -32,7 +33,6 @@ fun NaverMovieListItem(
         modifier = Modifier
             .fillMaxWidth()
             .height(150.dp)
-            .clickable { onItemClick(naverMovie) }
             .padding(20.dp),
         horizontalArrangement = Arrangement.Start
     ) {
@@ -40,7 +40,8 @@ fun NaverMovieListItem(
         CoilImage(
             modifier = Modifier
                 .fillMaxHeight()
-                .weight(2f),
+                .weight(2f)
+                .clickable { onItemClick(naverMovie, ItemClickType.LoadUrl) },
             imageModel = naverMovie.image,
             shimmerParams = ShimmerParams(
                 baseColor = MaterialTheme.colors.background,
@@ -59,6 +60,7 @@ fun NaverMovieListItem(
                 .fillMaxHeight()
                 .weight(6.5f)
                 .padding(start = 5.dp)
+                .clickable { onItemClick(naverMovie, ItemClickType.LoadUrl) }
         ) {
             Text(
                 modifier = Modifier.weight(1f),
@@ -93,7 +95,7 @@ fun NaverMovieListItem(
                     indication = null
                 ) {
                     bookmarkState = !bookmarkState
-                    onItemClick(naverMovie)
+                    onItemClick(naverMovie, ItemClickType.Bookmark)
                 },
             imageVector = Icons.Filled.Star,
             contentDescription = "bookmark",

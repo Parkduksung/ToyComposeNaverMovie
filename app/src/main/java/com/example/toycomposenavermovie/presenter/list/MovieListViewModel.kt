@@ -1,4 +1,4 @@
-package com.example.toycomposenavermovie.presenter.content
+package com.example.toycomposenavermovie.presenter.list
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

@@ -5,3 +5,9 @@ object Constants {
     const val CLIENT_ID = "qRkvFxV_lat8Ge_LbatQ"
     const val SECRET_KEY = "cVIQ3iWHU7"
 }
+
+
+sealed class ItemClickType {
+    object LoadUrl : ItemClickType()
+    object Bookmark : ItemClickType()
+}

@@ -1,4 +1,4 @@
-package com.example.toycomposenavermovie.presenter.content
+package com.example.toycomposenavermovie.presenter.list
 
 import com.example.toycomposenavermovie.domain.model.NaverMovie
 
