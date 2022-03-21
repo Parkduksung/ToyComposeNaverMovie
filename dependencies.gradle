@@ -8,6 +8,8 @@ ext.versions = [
         //compose
         composeVersion : '1.0.1',
 
+        // compose image loading
+        landscapistVersion   : '1.4.3',
 
         // network
         retrofitVersion      : '2.9.0',
