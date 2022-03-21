@@ -34,4 +34,7 @@ ext.versions = [
         hiltCoreVersion      : '2.40.1',
         hiltVersion          : '1.0.0',
         hiltComposeNavigation: '1.0.0-beta01',
+
+        // compose navigation
+        naviagtionVersion    : '2.4.0-beta02',
 ]

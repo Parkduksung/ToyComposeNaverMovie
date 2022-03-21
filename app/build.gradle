@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
 }
 
 apply from : '../dependencies.gradle'
@@ -96,4 +97,6 @@ dependencies {
     androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.hiltCoreVersion"
     kaptAndroidTest "com.google.dagger:hilt-compiler:$versions.hiltCoreVersion"
 
+    // navigation
+    implementation "androidx.navigation:navigation-compose:$versions.naviagtionVersion"
 }
