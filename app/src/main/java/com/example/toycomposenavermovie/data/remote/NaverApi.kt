@@ -21,7 +21,7 @@ interface NaverApi {
     ): MovieResponse
 
     companion object {
-        private const val INIT_DISPLAY = 10
+        private const val INIT_DISPLAY = 100
         private const val START_YEAR = 2000
         private var END_YEAR = Calendar.getInstance().get(Calendar.YEAR)
     }
