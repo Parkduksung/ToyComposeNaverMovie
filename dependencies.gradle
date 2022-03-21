@@ -26,5 +26,10 @@ ext.versions = [
         androidxTestJunit    : '1.1.2-rc01',
         androidTestRunner    : '1.3.0-beta01',
         mockitoKotlinVersion : '2.2.0',
-        mockitoInlineVersion : '3.3.3'
+        mockitoInlineVersion : '3.3.3',
+
+        // di
+        hiltCoreVersion      : '2.40.1',
+        hiltVersion          : '1.0.0',
+        hiltComposeNavigation: '1.0.0-beta01',
 ]
