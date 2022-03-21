@@ -3,6 +3,7 @@ package com.example.toycomposenavermovie.domain.use_case.get_naver_movie
 import com.example.toycomposenavermovie.common.Resource
 import com.example.toycomposenavermovie.domain.model.NaverMovie
 import com.example.toycomposenavermovie.domain.repository.NaverRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -15,6 +16,7 @@ class GetNaverMovieUseCase @Inject constructor(
     operator fun invoke(keyword: String): Flow<Resource<List<NaverMovie>>> = flow {
         try {
             emit(Resource.Loading<List<NaverMovie>>())
+            delay(500L)
             val movies = naverRepository.getNaverMovies(keyword).movieList.map { it.toNaverMovie() }
             emit(Resource.Success<List<NaverMovie>>(movies))
         } catch (e: HttpException) {
