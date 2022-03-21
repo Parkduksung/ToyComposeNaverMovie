@@ -1,5 +1,9 @@
 package com.example.toycomposenavermovie.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class NaverMovie(
     val actor: String,
     val director: String,
@@ -9,7 +13,7 @@ data class NaverMovie(
     val subtitle: String,
     val title: String,
     val userRating: String
-)
+) : Parcelable
 
 
 fun NaverMovie.allElementIsNotEmpty(): Boolean {
