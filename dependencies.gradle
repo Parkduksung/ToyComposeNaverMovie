@@ -1,0 +1,10 @@
+ext.versions = [
+        minSdk     : 26,
+        compileSdk : 31,
+        tragetSdk : 31,
+        versionCode: 1,
+        versionName: '1.0',
+
+        composeVersion : '1.0.1'
+
+]
