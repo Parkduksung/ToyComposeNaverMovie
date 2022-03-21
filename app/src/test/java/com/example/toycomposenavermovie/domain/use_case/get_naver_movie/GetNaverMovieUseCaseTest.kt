@@ -50,6 +50,10 @@ class GetNaverMovieUseCaseTest {
                     is Resource.Success -> {
                         assertEquals(resource.message, null)
                         assertEquals(
+                            MockUtil.mockNaverReponse().movieList[0].actor,
+                            MockUtil.mockNaverReponse().movieList[0].toNaverMovie().actor
+                        )
+                        assertEquals(
                             resource.data,
                             MockUtil.mockNaverReponse().movieList.map { it.toNaverMovie() })
                     }
@@ -72,22 +76,22 @@ class GetNaverMovieUseCaseTest {
         getNaverMovieUseCase(keyword = "국가").take(getNaverMovieUseCase(keyword = "국가").count())
             .toList().forEach { resource ->
 
-            when (resource) {
+                when (resource) {
 
-                //then
-                is Resource.Loading -> {
-                    assertEquals(resource.message, null)
-                    assertEquals(resource.data, null)
-                }
+                    //then
+                    is Resource.Loading -> {
+                        assertEquals(resource.message, null)
+                        assertEquals(resource.data, null)
+                    }
 
-                is Resource.Error -> {
-                    assertEquals(
-                        resource.message,
-                        "Couldn't reach server. Check your internet connection."
-                    )
-                    assertEquals(resource.data, null)
+                    is Resource.Error -> {
+                        assertEquals(
+                            resource.message,
+                            "Couldn't reach server. Check your internet connection."
+                        )
+                        assertEquals(resource.data, null)
+                    }
                 }
             }
-        }
     }
 }
