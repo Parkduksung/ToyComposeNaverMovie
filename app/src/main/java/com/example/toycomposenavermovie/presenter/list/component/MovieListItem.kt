@@ -8,26 +8,27 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.toycomposenavermovie.common.ItemClickType
 import com.example.toycomposenavermovie.domain.model.NaverMovie
 import com.example.toycomposenavermovie.ext.convertHtml
 import com.example.toycomposenavermovie.ext.convertPersons
+import com.example.toycomposenavermovie.presenter.bookmark.BookmarkViewModel
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun NaverMovieListItem(
+    bookmarkViewModel: BookmarkViewModel = hiltViewModel(),
     naverMovie: NaverMovie,
     onItemClick: (NaverMovie, ItemClickType) -> Unit
 ) {
-
-    var bookmarkState by remember { mutableStateOf(false) }
 
     Row(
         modifier = Modifier
@@ -94,12 +95,15 @@ fun NaverMovieListItem(
                     interactionSource = MutableInteractionSource(),
                     indication = null
                 ) {
-                    bookmarkState = !bookmarkState
-                    onItemClick(naverMovie, ItemClickType.Bookmark)
+                    if (naverMovie.isBookmark) {
+                        bookmarkViewModel.deleteBookmark(naverMovie)
+                    } else {
+                        bookmarkViewModel.registerBookmark(naverMovie)
+                    }
                 },
             imageVector = Icons.Filled.Star,
             contentDescription = "bookmark",
-            tint = if (bookmarkState) Color.Yellow else Color.LightGray
+            tint = if (naverMovie.isBookmark) Color.Yellow else Color.LightGray
         )
     }
 }

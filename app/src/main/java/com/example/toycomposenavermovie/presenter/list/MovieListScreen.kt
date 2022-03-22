@@ -35,9 +35,9 @@ import com.google.gson.Gson
 @Composable
 fun MovieListScreen(
     navController: NavController,
-    viewModel: MovieListViewModel = hiltViewModel()
+    movieViewModel: MovieListViewModel = hiltViewModel()
 ) {
-    val state = viewModel.state.value
+    val movieState = movieViewModel.state.value
 
     var inputSearchState by remember { mutableStateOf("") }
 
@@ -60,7 +60,7 @@ fun MovieListScreen(
                 OutlinedButton(modifier = Modifier
                     .weight(3f)
                     .align(CenterVertically),
-                    onClick = { }
+                    onClick = { navController.navigate(Screen.BookmarkScreen.route) }
                 ) {
                     Icon(
                         imageVector = Icons.Filled.Star,
@@ -95,7 +95,7 @@ fun MovieListScreen(
                 ),
                 keyboardActions = KeyboardActions(
                     onSearch = {
-                        viewModel.getMovies(inputSearchState)
+                        movieViewModel.getMovies(inputSearchState)
                     }
                 ),
                 trailingIcon = {
@@ -113,11 +113,10 @@ fun MovieListScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .semantics { testTag = "lazyNaverMovieListColumn" }) {
-                items(state.movies) { movie ->
-
+                items(movieState.movies) { movie ->
                     if (movie.allElementIsNotEmpty()) {
                         NaverMovieListItem(
-                            movie,
+                            naverMovie = movie,
                             onItemClick = { movie, type ->
                                 when (type) {
 
@@ -137,7 +136,7 @@ fun MovieListScreen(
             }
         }
 
-        if (state.isLoading) {
+        if (movieState.isLoading) {
             CircularProgressIndicator(
                 modifier = Modifier
                     .align(Alignment.Center)

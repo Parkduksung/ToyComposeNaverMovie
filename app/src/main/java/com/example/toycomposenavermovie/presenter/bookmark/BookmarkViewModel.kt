@@ -77,7 +77,7 @@ class BookmarkViewModel @Inject constructor(
                 }
 
                 is Resource.Success -> {
-                    _state.value = BookmarkState(movies = result.data?.map { it.toNaverMovie() }
+                    _state.value = BookmarkState(movies = result.data?.map { it.toNaverMovie().copy(isBookmark = true) }
                         ?: emptyList())
                 }
 
