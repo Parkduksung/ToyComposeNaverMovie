@@ -99,4 +99,13 @@ dependencies {
 
     // navigation
     implementation "androidx.navigation:navigation-compose:$versions.naviagtionVersion"
+
+
+    //Room
+    implementation "androidx.room:room-runtime:$versions.roomVersion"
+    implementation "androidx.room:room-ktx:$versions.roomVersion"
+    kapt "androidx.room:room-compiler:$versions.roomVersion"
+
+    // Room M1 apple mac Rosetta2
+    kapt 'org.xerial:sqlite-jdbc:3.34.0'
 }

@@ -37,4 +37,7 @@ ext.versions = [
 
         // compose navigation
         naviagtionVersion    : '2.4.0-beta02',
+        
+        // room
+        roomVersion : '2.3.0'
 ]
