@@ -1,4 +1,4 @@
-package com.example.toycomposenavermovie.domain.use_case.get_naver_movie
+package com.example.toycomposenavermovie.domain.usecase.naver
 
 import com.example.toycomposenavermovie.common.Resource
 import com.example.toycomposenavermovie.domain.model.NaverMovie

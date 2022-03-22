@@ -2,6 +2,7 @@ package com.example.toycomposenavermovie.domain.use_case.get_naver_movie
 
 import com.example.toycomposenavermovie.common.Resource
 import com.example.toycomposenavermovie.domain.repository.NaverRepository
+import com.example.toycomposenavermovie.domain.usecase.naver.GetNaverMovieUseCase
 import com.nhaarman.mockitokotlin2.doAnswer
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.stub
