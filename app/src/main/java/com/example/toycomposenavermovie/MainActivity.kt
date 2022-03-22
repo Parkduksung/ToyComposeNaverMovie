@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.toycomposenavermovie.presenter.Screen
+import com.example.toycomposenavermovie.presenter.bookmark.BookmarkScreen
 import com.example.toycomposenavermovie.presenter.detail.MovieDetailScreen
 import com.example.toycomposenavermovie.presenter.list.MovieListScreen
 import com.example.toycomposenavermovie.ui.theme.ToyComposeNaverMovieTheme
@@ -52,6 +53,14 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         ) { MovieDetailScreen() }
+
+                        composable(
+                            route = Screen.BookmarkScreen.route
+                        ) {
+                            BookmarkScreen(
+                                navController = navController
+                            )
+                        }
                     }
                 }
             }
